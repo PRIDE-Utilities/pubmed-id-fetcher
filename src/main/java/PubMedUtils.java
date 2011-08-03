@@ -22,42 +22,31 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 
-public class Eutils {
+public class PubMedUtils {
 
-    public static Logger logger = Logger.getLogger(Eutils.class.getName());
+    public static Logger logger = Logger.getLogger(PubMedUtils.class.getName());
+    public static final String PUBMED_EUTILS = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
-    // http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15852344&report=docsum&mode=text
-
-
-    public static String getPubMedSummary(String pubmedId) {
-        String baseUrl = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
-        Map<String, String> parameters = new HashMap();
-
-
+    public static String getPubMedSummary(String pubmedId) throws IOException {
+        Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("db", "pubmed");
         parameters.put("id", pubmedId);
         parameters.put("report", "docsum");
         parameters.put("mode", "text");
 
         // call makeGetRequest on base url + parameters
-
-        InputStream response = makeGetRequest(baseUrl, parameters);
-
+        InputStream response = makeGetRequest(PUBMED_EUTILS, parameters);
 
         // read from input stream
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(response));
+        StringBuilder summary = new StringBuilder();
         String line = null;
 
-        try {
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        while ((line = reader.readLine()) != null) {
+            summary.append(line);
         }
 
-        return null;
+        return summary.toString();
     }
 
     @SuppressWarnings("unchecked")
@@ -94,7 +83,11 @@ public class Eutils {
 
     public static void main(String[] args) {
 
-        getPubMedSummary("15852344");
+        try {
+            System.out.println(getPubMedSummary("15852344"));
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
 }

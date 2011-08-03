@@ -6,63 +6,59 @@
 
     <groupId>peppubmed</groupId>
     <artifactId>peppubmed</artifactId>
-    <version>1.0</version>
+    <version>0.1</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.5</version>
+        </dependency>
 
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
 
-        <dependencies>
-        <!-- The PRIDE core This MUST remain the first dependency,
-          to allow easy reference to the PRIDE core version number -->
-<!--        <dependency>
-            <groupId>uk.ac.ebi.pride</groupId>
-            <artifactId>pride-core</artifactId>
-            <type>jar</type>
-            <version>2.8.10</version>
-        </dependency>-->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
+        </dependency>
 
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.0.5</version>
+        </dependency>
+    </dependencies>
 
-<dependency>
-    <groupId>commons-codec</groupId>
-    <artifactId>commons-codec</artifactId>
-    <version>1.5</version>
-</dependency>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>maven2-repository.dev.java.net</id>
+            <url>http://download.java.net/maven/2</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>maven-repository.dev.java.net</id>
+            <name>Java.net Maven 1 Repository (legacy)</name>
+            <url>http://download.java.net/maven/1</url>
+            <layout>legacy</layout>
+        </pluginRepository>
+    </pluginRepositories>
 
-
-               <dependency>
-    <groupId>commons-httpclient</groupId>
-    <artifactId>commons-httpclient</artifactId>
-    <version>3.1</version>
-</dependency>
-
-
-            <dependency>
-    <groupId>commons-logging</groupId>
-    <artifactId>commons-logging</artifactId>
-    <version>1.1.1</version>
-</dependency>
-
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>5.0.5</version>
-</dependency>
-
-
-   </dependencies>
-
-       <repositories>
-
-
-                   <repository>
-            <id>test-id</id>
-            <name>test</name>
-            <url>http://mvnrepository.com/</url>
+    <distributionManagement>
+        <repository>
+            <id>ebi-repo</id>
+            <name>EBI Repository</name>
+            <url>scp://lobster.ebi.ac.uk/homes/maven/public_html/m2repo</url>
         </repository>
-
-
-       </repositories>
-
-
-
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>ebi-repo-snapshots</id>
+            <name>EBI Snapshots Repository</name>
+            <url>scp://lobster.ebi.ac.uk/homes/maven/public_html/m2repo_snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
