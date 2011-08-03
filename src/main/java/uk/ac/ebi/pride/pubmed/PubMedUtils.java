@@ -1,4 +1,4 @@
-/**
+package uk.ac.ebi.pride.pubmed; /**
  * Created by IntelliJ IDEA.
  * User: attilacsordas
  * Date: May 3, 2011
