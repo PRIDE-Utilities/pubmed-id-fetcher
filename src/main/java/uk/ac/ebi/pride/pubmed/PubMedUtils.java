@@ -38,12 +38,19 @@ public class PubMedUtils {
         InputStream response = makeGetRequest(PUBMED_EUTILS, parameters);
 
         // read from input stream
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response));
+        BufferedReader reader = null;
         StringBuilder summary = new StringBuilder();
-        String line = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(response));
+            String line;
 
-        while ((line = reader.readLine()) != null) {
-            summary.append(line);
+            while ((line = reader.readLine()) != null) {
+                summary.append(line);
+            }
+        } finally {
+            if (reader != null) {
+                reader.close();
+            }
         }
 
         return summary.toString();
