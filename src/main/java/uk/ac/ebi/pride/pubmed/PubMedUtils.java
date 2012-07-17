@@ -27,12 +27,14 @@ public class PubMedUtils {
     public static Logger logger = Logger.getLogger(PubMedUtils.class.getName());
     public static final String PUBMED_EUTILS = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
 
+    // example http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15852344&rettype=docsum&retmode=text
+
     public static String getPubMedSummary(String pubmedId) throws IOException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("db", "pubmed");
         parameters.put("id", pubmedId);
-        parameters.put("report", "docsum");
-        parameters.put("mode", "text");
+        parameters.put("rettype", "docsum");
+        parameters.put("retmode", "text");
 
         // call makeGetRequest on base url + parameters
         InputStream response = makeGetRequest(PUBMED_EUTILS, parameters);
@@ -53,7 +55,20 @@ public class PubMedUtils {
             }
         }
 
-        return summary.toString();
+        // get rid of 1: at the beginning of the sting
+
+        String modifiedsummary = summary.substring(3);
+
+        // get rid of the tail info, patterns:
+
+        // "doi:"
+
+        // "[Epub"
+
+        // "PubMed"
+
+
+        return modifiedsummary.toString();
     }
 
     @SuppressWarnings("unchecked")
@@ -91,7 +106,7 @@ public class PubMedUtils {
     public static void main(String[] args) {
 
         try {
-            System.out.println(getPubMedSummary("15852344"));
+            System.out.println(getPubMedSummary("22147733"));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
