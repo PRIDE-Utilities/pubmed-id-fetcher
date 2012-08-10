@@ -29,6 +29,8 @@ public class PubMedUtils {
 
     // example http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=15852344&rettype=docsum&retmode=text
 
+    // good examples: 22807455, 22147733
+
     public static String getPubMedSummary(String pubmedId) throws IOException {
         Map<String, String> parameters = new HashMap<String, String>();
         parameters.put("db", "pubmed");
