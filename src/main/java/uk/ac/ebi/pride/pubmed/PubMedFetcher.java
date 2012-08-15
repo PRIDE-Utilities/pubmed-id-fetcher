@@ -16,6 +16,10 @@ import java.util.regex.Pattern;
 
 /**
  *
+ * NOTE: Sometimes the answer from the server may have a /n instead of a space. Therefore we substitute all /n by blank
+ * spaces. However, this means that sometimes we may find double spaces and the REGEX will not match. Therefore we need
+ * to replace all "  " (double spaces) by " " (single spaces).
+ *
  * @author Jose A. Dianes
  * @author Attila Csordas
  * @version $Id$
