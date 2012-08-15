@@ -26,7 +26,6 @@ public class PubMedFetcherActualServiceIntegrationTest {
     @Autowired
     private PubMedFetcher pubMedFetcher;
 
-
     @Test
     public void testActualService() throws Exception {
 
@@ -39,4 +38,5 @@ public class PubMedFetcherActualServiceIntegrationTest {
 
         assertThat(response == null, is(false));
     }
+
 }
