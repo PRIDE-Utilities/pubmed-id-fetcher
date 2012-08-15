@@ -14,7 +14,11 @@ public enum PubMedSummaries {
             "Burroughs NJ, Wellington EM, Smith MC. Metabolic switches and adaptations deduced\n" +
             "from the proteomes of Streptomyces coelicolor wild type and phoP mutant grown in \n" +
             "batch culture. Mol Cell Proteomics. 2012 Feb;11(2):M111.013797. Epub 2011 Dec 6. \n" +
-            "PubMed PMID: 22147733; PubMed Central PMCID: PMC3277767.")
+            "PubMed PMID: 22147733; PubMed Central PMCID: PMC3277767."),
+    SUMMARY_22825847("22825847", "1: Wejda M, Impens F, Takahashi N, Van Damme P, Gevaert K, Vandenabeele P.\n" +
+            "Degradomics reveals that cleavage specificity profiles of caspase-2 and effector \n" +
+            "caspases are alike. J Biol Chem. 2012 Jul 23. [Epub ahead of print] PubMed PMID: \n" +
+            "22825847.")
 
     ;
 

@@ -61,13 +61,13 @@ public class PubMedFetcher {
     private PubMedSummary parseSummaryText(String summaryText) {
         PubMedSummary res = new PubMedSummary();
 
-        summaryText = summaryText.replaceAll("\n", "");
+        summaryText = summaryText.replaceAll("\n", " ");
 
         // find elements, starting with PMID
         Pattern pattern = Pattern.compile(PubMedRegEx.PMID_REGEX.getRegEx());
         Matcher matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // PMID found
-            String [] elems = summaryText.substring(matcher.start(), matcher.end()).split(" ");
+            String [] elems = clean(summaryText.substring(matcher.start(), matcher.end())).split(" ");
             String pubmedId = clean(elems[2]);
             res.setPmid(pubmedId);
             summaryText = matcher.replaceAll("");
@@ -76,7 +76,7 @@ public class PubMedFetcher {
         pattern = Pattern.compile(PubMedRegEx.PMCID_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // PMCID found
-            String [] elems = summaryText.substring(matcher.start(), matcher.end()).split(" ");
+            String [] elems = clean(summaryText.substring(matcher.start(), matcher.end())).split(" ");
             String pubmedCId = clean(elems[3]);
             res.setPmcid(pubmedCId);
             summaryText = matcher.replaceAll("");
@@ -93,7 +93,7 @@ public class PubMedFetcher {
         pattern = Pattern.compile(PubMedRegEx.DOI_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // DOI found
-            String [] elems = summaryText.substring(matcher.start(), matcher.end()).split(" ");
+            String [] elems = clean(summaryText.substring(matcher.start(), matcher.end())).split(" ");
             res.setDoi(clean(elems[1]));
             summaryText = matcher.replaceAll("");
         }
@@ -101,6 +101,13 @@ public class PubMedFetcher {
         pattern = Pattern.compile(PubMedRegEx.INDEX_NUMBER_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // INDEX_NUMBER found
+            summaryText = matcher.replaceAll("");
+        }
+        // check for EPUB AOP
+        pattern = Pattern.compile(PubMedRegEx.EPUB_AOP_REGEX.getRegEx());
+        matcher = pattern.matcher(summaryText);
+        if (matcher.find()) { // EPUB Ahead Of Print found
+            res.setEpubAheadOfPrint(true);
             summaryText = matcher.replaceAll("");
         }
 
@@ -117,8 +124,15 @@ public class PubMedFetcher {
 
     private String clean(String text) {
         String res = text;
-        if (res.endsWith(".") || res.endsWith(";"))
+        // remove trailing spaces, . and ;
+        while (res.endsWith(".") || res.endsWith(";") || res.endsWith(" "))
             res = res.substring(0,res.length()-1);
+        // remove heading spaces, . and ;
+        while (res.startsWith(".") || res.startsWith(";") || res.startsWith(" "))
+            res = res.substring(1,res.length());
+        // remove double spacing
+        while (res.contains("  "))
+            res = res.replace("  ", " ");
         return res;
     }
 

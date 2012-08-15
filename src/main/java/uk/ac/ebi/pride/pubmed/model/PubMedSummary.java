@@ -10,6 +10,7 @@ public class PubMedSummary {
     private String pmcid;
     private String doi;
     private String epub;
+    private boolean epubAheadOfPrint = false;
 
 
     public String getReference() {
@@ -50,5 +51,13 @@ public class PubMedSummary {
 
     public void setEpub(String epub) {
         this.epub = epub;
+    }
+
+    public boolean isEpubAheadOfPrint() {
+        return epubAheadOfPrint;
+    }
+
+    public void setEpubAheadOfPrint(boolean epubAheadOfPrint) {
+        this.epubAheadOfPrint = epubAheadOfPrint;
     }
 }

@@ -5,12 +5,13 @@ package uk.ac.ebi.pride.pubmed.util;
  * @version $Id$
  */
 public enum PubMedRegEx {
-    EPUB_REGEX("Epub \\d+ \\w+ \\d+;?.?"),
-    PMID_REGEX("PubMed PMID: \\d+;?.?"),
-    PMCID_REGEX("PubMed Central PMCID: PMC\\d+;?.?"),
+    EPUB_REGEX("Epub\\s+\\d+\\s+\\w+\\s+\\d+[;\\.]?"),
+    PMID_REGEX("PubMed\\s+PMID:\\s+\\d+[;\\.]?"),
+    PMCID_REGEX("PubMed\\s+Central\\s+PMCID:\\s+PMC\\d+[;\\.]?"),
     // doi: 10.1002/pmic.201200003
-    DOI_REGEX("doi: \\S+\\s"),
-    INDEX_NUMBER_REGEX("\\d+: ")
+    DOI_REGEX("doi:\\s+\\S+\\s"),
+    INDEX_NUMBER_REGEX("\\d+:\\s+"),
+    EPUB_AOP_REGEX("\\s*\\[Epub\\s+ahead\\s+of\\s+print\\]\\s*")
     ;
     private String regEx;
 
