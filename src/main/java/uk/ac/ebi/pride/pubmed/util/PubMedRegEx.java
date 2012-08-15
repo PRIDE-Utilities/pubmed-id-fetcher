@@ -9,7 +9,8 @@ public enum PubMedRegEx {
     PMID_REGEX("PubMed PMID: \\d+;?.?"),
     PMCID_REGEX("PubMed Central PMCID: PMC\\d+;?.?"),
     // doi: 10.1002/pmic.201200003
-    DOI_REGEX("doi: \\S+\\s")
+    DOI_REGEX("doi: \\S+\\s"),
+    INDEX_NUMBER_REGEX("\\d+: ")
     ;
     private String regEx;
 

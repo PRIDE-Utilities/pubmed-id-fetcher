@@ -63,7 +63,7 @@ public class PubMedFetcher {
 
         summaryText = summaryText.replaceAll("\n", "");
 
-        // find elements
+        // find elements, starting with PMID
         Pattern pattern = Pattern.compile(PubMedRegEx.PMID_REGEX.getRegEx());
         Matcher matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // PMID found
@@ -72,7 +72,7 @@ public class PubMedFetcher {
             res.setPmid(pubmedId);
             summaryText = matcher.replaceAll("");
         }
-
+        // find PMCID
         pattern = Pattern.compile(PubMedRegEx.PMCID_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // PMCID found
@@ -81,7 +81,7 @@ public class PubMedFetcher {
             res.setPmcid(pubmedCId);
             summaryText = matcher.replaceAll("");
         }
-
+        // find EPUB
         pattern = Pattern.compile(PubMedRegEx.EPUB_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // EPUB found
@@ -89,12 +89,18 @@ public class PubMedFetcher {
             res.setEpub(epub);
             summaryText = matcher.replaceAll("");
         }
-
+        // find DOI
         pattern = Pattern.compile(PubMedRegEx.DOI_REGEX.getRegEx());
         matcher = pattern.matcher(summaryText);
         if (matcher.find()) { // DOI found
             String [] elems = summaryText.substring(matcher.start(), matcher.end()).split(" ");
             res.setDoi(clean(elems[1]));
+            summaryText = matcher.replaceAll("");
+        }
+        // check and remove index number if present
+        pattern = Pattern.compile(PubMedRegEx.INDEX_NUMBER_REGEX.getRegEx());
+        matcher = pattern.matcher(summaryText);
+        if (matcher.find()) { // INDEX_NUMBER found
             summaryText = matcher.replaceAll("");
         }
 
