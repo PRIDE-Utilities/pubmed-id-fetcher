@@ -22,6 +22,7 @@ public class PubMedFetcherActualServiceIntegrationTest {
     // good examples of actual PUBMED_IDs
     public static final String PUBMED_ID_1 = "22147733";
     public static final String PUBMED_ID_2 = "22807455";
+    public static final String PUBMED_ID_3 = "22825847";
 
     @Autowired
     private PubMedFetcher pubMedFetcher;
@@ -35,6 +36,10 @@ public class PubMedFetcherActualServiceIntegrationTest {
 
 
         response = pubMedFetcher.getPubMedSummary(PUBMED_ID_2);
+
+        assertThat(response == null, is(false));
+
+        response = pubMedFetcher.getPubMedSummary(PUBMED_ID_3);
 
         assertThat(response == null, is(false));
     }
