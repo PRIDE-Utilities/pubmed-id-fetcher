@@ -27,6 +27,7 @@ public class PubMedEutilsRequestHandler extends AbstractHandler {
         httpServletResponse.setContentType("text/html;charset=utf-8");
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
         request.setHandled(true);
-        httpServletResponse.getWriter().println(PubMedSummaries.SUMMARY_22147733.getSummary());
+        // !use writer.print not writer.println, as the latter will add a new line which causes troubles in the test!
+        httpServletResponse.getWriter().print(PubMedSummaries.SUMMARY_22147733.getSummary());
     }
 }
