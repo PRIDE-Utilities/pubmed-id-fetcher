@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>uk.ac.ebi.pride.pubmed</groupId>
-    <artifactId>peppubmed</artifactId>
+    <artifactId>pubmed-id-fetcher</artifactId>
     <version>0.3.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
