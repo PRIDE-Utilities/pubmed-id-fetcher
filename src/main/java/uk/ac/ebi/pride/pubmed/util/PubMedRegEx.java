@@ -9,6 +9,7 @@ public enum PubMedRegEx {
     PMID_REGEX("PubMed\\s+PMID:\\s+\\d+[;\\.]?"),
     PMCID_REGEX("PubMed\\s+Central\\s+PMCID:\\s+PMC\\d+[;\\.]?"),
     // doi: 10.1002/pmic.201200003
+    //todo add all possibl doi regexe
     DOI_REGEX("doi:\\s+\\S+\\s"),
     INDEX_NUMBER_REGEX("\\d+:\\s+"),
     EPUB_AOP_REGEX("\\s*\\[Epub\\s+ahead\\s+of\\s+print\\]\\s*")
