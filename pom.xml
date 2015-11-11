@@ -11,8 +11,8 @@
 
     <!-- for release-->
     <scm>
-        <connection>scm:git:git://github.com/PRIDE-Archive/pubmed-id-fetcher.git</connection>
-        <developerConnection>scm:git:git@github.com:PRIDE-Archive/pubmed-id-fetcher.gitt</developerConnection>
+        <connection>scm:git:https://github.com/PRIDE-Archive/pubmed-id-fetcher.git</connection>
+        <developerConnection>scm:git:https://github.compubmed-id-fetcher.git</developerConnection>
         <url>https://github.com/PRIDE-Archive/pubmed-id-fetcher.git</url>
         <tag>HEAD</tag>
     </scm>
