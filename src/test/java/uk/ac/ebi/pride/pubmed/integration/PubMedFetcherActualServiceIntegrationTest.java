@@ -5,8 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 import uk.ac.ebi.pride.pubmed.PubMedFetcher;
 import uk.ac.ebi.pride.pubmed.model.PubMedSummary;
+
+import java.io.IOException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -29,19 +32,14 @@ public class PubMedFetcherActualServiceIntegrationTest {
 
     @Test
     public void testActualService() throws Exception {
+        assetResponseReference(pubMedFetcher.getPubMedSummary(PUBMED_ID_1));
+        assetResponseReference(pubMedFetcher.getPubMedSummary(PUBMED_ID_2));
+        assetResponseReference(pubMedFetcher.getPubMedSummary(PUBMED_ID_3));
+    }
 
-        PubMedSummary response = pubMedFetcher.getPubMedSummary(PUBMED_ID_1);
-
-        assertThat(response == null, is(false));
-
-
-        response = pubMedFetcher.getPubMedSummary(PUBMED_ID_2);
-
-        assertThat(response == null, is(false));
-
-        response = pubMedFetcher.getPubMedSummary(PUBMED_ID_3);
-
-        assertThat(response == null, is(false));
+    private void assetResponseReference(PubMedSummary response) throws IOException {
+        Assert.isTrue(response!=null, "Response cannot be null");
+        System.out.println("Response reference: " + (response.getReference()!=null ? response.getReference() : "null"));
     }
 
 }
