@@ -22,7 +22,7 @@ public class PubMedEutilsRequestHandler extends AbstractHandler {
     @Override
     public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 
-        logger.info("Request received: " + request.getUri());
+        logger.info("Request received: " + request.getOriginalURI());
 
         httpServletResponse.setContentType("text/html;charset=utf-8");
         httpServletResponse.setStatus(HttpServletResponse.SC_OK);
