@@ -13,14 +13,16 @@ public class PubMedFetcherTests {
 
   @Test
   public void testService() throws Exception {
-    assertSummaryReference(PubMedFetcher.getPubMedSummaryText("22147733"));
-    assertSummaryReference(PubMedFetcher.getPubMedSummaryText("22807455"));
-    assertSummaryReference(PubMedFetcher.getPubMedSummaryText("22825847"));
-    assertSummaryReference(PubMedFetcher.getPubMedSummaryText("24607996"));
+    assertSummaryReference(PubMedFetcher.getPubMedSummary("22147733"));
+    assertSummaryReference(PubMedFetcher.getPubMedSummary("22807455"));
+    assertSummaryReference(PubMedFetcher.getPubMedSummary("22825847"));
+    assertSummaryReference(PubMedFetcher.getPubMedSummary("24607996"));
   }
 
   private void assertSummaryReference(ReferenceSummary summary) throws IOException {
     Assert.isTrue(summary!=null, "Summary cannot be null");
-    log.info("Summary reference: " + (summary.getReference()!=null ? summary.getReference() : "null"));
+    Assert.isTrue(summary.getRefLine()!=null, "Summary RefLine cannot be null");
+    Assert.isTrue(summary.getEupmcResult()!=null, "Summary Result cannot be null");
+    log.info("Summary reference: " + summary.getRefLine());
   }
 }

@@ -15,16 +15,18 @@ import java.net.URISyntaxException;
 
 public class PubMedFetcher {
   private static Logger log = LoggerFactory.getLogger(PubMedFetcher.class);
-  private final static String EUPMC_REST_BASE_URL= "http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=";
 
-  public static ReferenceSummary getPubMedSummaryText(String pubmedId) throws URISyntaxException, IOException {
+  public static ReferenceSummary getPubMedSummary(String pubmedId) throws URISyntaxException, IOException {
     ReferenceSummary result;
-    EupmcResponse response = performEupmcQuery(EUPMC_REST_BASE_URL + "ext_id:" + pubmedId + "%20src:med&format=json");
+    final String REQUEST_URL = "http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=ext_id:" + pubmedId + "%20src:med&format=json";
+    log.info("Requesting EUPMC WS using: " + REQUEST_URL);
+    EupmcResponse response = performEupmcQuery(REQUEST_URL);
     if (response!=null) {
       result = maptoSummaryObject(response);
     } else {
-      throw new IOException("No proper response from EU PMC for: " + EUPMC_REST_BASE_URL + "ext_id:" + pubmedId + "  src:med&format=json");
+      throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
     }
+    log.debug("Refline result: " + result.getRefLine());
     return result;
   }
 
@@ -54,23 +56,24 @@ public class PubMedFetcher {
     EupmcResult eupmcResult = request.getResultList().getResult()[0];
     StringBuilder refLine = new StringBuilder();
     refLine.append(eupmcResult.getAuthorString());
-    refLine.append(" ");
+    refLine.append(' ');
     refLine.append(eupmcResult.getTitle());
-    refLine.append(" ");
+    refLine.append(' ');
     refLine.append(eupmcResult.getJournalTitle());
-    refLine.append(". ");
+    refLine.append('.');
+    refLine.append(' ');
     refLine.append(eupmcResult.getPubYear());
     if (!StringUtils.isEmpty(eupmcResult.getJournalVolume())) {
-      refLine.append(" ");
+      refLine.append(' ');
       refLine.append(eupmcResult.getJournalVolume());
     }
     if (!StringUtils.isEmpty(eupmcResult.getIssue())) {
-      refLine.append("(");
+      refLine.append('(');
       refLine.append(eupmcResult.getIssue());
-      refLine.append(")");
+      refLine.append(')');
     }
     if (!StringUtils.isEmpty(eupmcResult.getPageInfo())) {
-      refLine.append(":");
+      refLine.append(':');
       refLine.append(eupmcResult.getPageInfo());
     }
     summaryResult.setRefLine(refLine.toString());
