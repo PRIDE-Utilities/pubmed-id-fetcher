@@ -28,6 +28,7 @@ public class EupmcResult {
   EupmcDbCrossReferenceArray dbCrossReferenceList;
   String hasLabsLinks;
   String hasTMAccessionNumbers;
+  EupmcTmAccessionTypeArray tmAccessionTypeList;
   String firstPublicationDate;
 
   /**
@@ -532,5 +533,23 @@ public class EupmcResult {
    */
   public String getHasSuppl() {
     return hasSuppl;
+  }
+
+  /**
+   * Gets tmAccessionTypeList.
+   *
+   * @return Value of tmAccessionTypeList.
+   */
+  public EupmcTmAccessionTypeArray getTmAccessionTypeList() {
+    return tmAccessionTypeList;
+  }
+
+  /**
+   * Sets new tmAccessionTypeList.
+   *
+   * @param tmAccessionTypeList New value of tmAccessionTypeList.
+   */
+  public void setTmAccessionTypeList(EupmcTmAccessionTypeArray tmAccessionTypeList) {
+    this.tmAccessionTypeList = tmAccessionTypeList;
   }
 }
