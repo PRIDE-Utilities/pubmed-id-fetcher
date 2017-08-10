@@ -1,6 +1,6 @@
 package uk.ac.ebi.pride.pubmed.model;
 
-public class ReferenceSummary {
+public class EupmcReferenceSummary {
     private String refLine;
     private EupmcResult eupmcResult;
 

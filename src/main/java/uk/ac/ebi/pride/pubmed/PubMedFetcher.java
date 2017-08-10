@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 import uk.ac.ebi.pride.pubmed.model.EupmcResponse;
 import uk.ac.ebi.pride.pubmed.model.EupmcResult;
-import uk.ac.ebi.pride.pubmed.model.ReferenceSummary;
+import uk.ac.ebi.pride.pubmed.model.EupmcReferenceSummary;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -16,8 +16,8 @@ import java.net.URISyntaxException;
 public class PubMedFetcher {
   private static Logger log = LoggerFactory.getLogger(PubMedFetcher.class);
 
-  public static ReferenceSummary getPubMedSummary(String pubmedId) throws URISyntaxException, IOException {
-    ReferenceSummary result;
+  public static EupmcReferenceSummary getPubMedSummary(String pubmedId) throws URISyntaxException, IOException {
+    EupmcReferenceSummary result;
     final String REQUEST_URL = "http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=ext_id:" + pubmedId + "%20src:med&format=json";
     log.info("Requesting EUPMC WS using: " + REQUEST_URL);
     EupmcResponse response = performEupmcQuery(REQUEST_URL);
@@ -45,8 +45,8 @@ public class PubMedFetcher {
     return result;
   }
 
-  private static ReferenceSummary maptoSummaryObject(EupmcResponse request) throws IOException {
-    ReferenceSummary summaryResult = new ReferenceSummary();
+  private static EupmcReferenceSummary maptoSummaryObject(EupmcResponse request) throws IOException {
+    EupmcReferenceSummary summaryResult = new EupmcReferenceSummary();
     int hitCount = request.getHitCount();
     if (hitCount!=1) {
       String message = "Error, expected 1 result back from EU PMC instead got: " + hitCount;
