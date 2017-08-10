@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.pubmed.integration;
+/*package uk.ac.ebi.pride.pubmed.integration;
 
 import org.eclipse.jetty.server.Server;
 import org.junit.AfterClass;
@@ -10,7 +10,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.ac.ebi.pride.pubmed.PubMedFetcher;
 import uk.ac.ebi.pride.pubmed.mockups.PubMedEutilsRequestHandler;
-import uk.ac.ebi.pride.pubmed.model.PubMedSummary;
 import uk.ac.ebi.pride.pubmed.util.PubMedSummaries;
 
 import java.util.logging.Logger;
@@ -21,12 +20,8 @@ import static org.hamcrest.core.Is.is;
 /**
  * @author Jose A. Dianes
  * @version $Id$
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/pubmed-eutils-localhost-context.xml"})
-public class PubMedFetcherIntegrationTest {
 
-    public static Logger logger = Logger.getLogger(PubMedFetcherIntegrationTest.class.getName());
+
 
     public static final String PUBMED_ID = "22147733";
     public static final String PUBMED_CID = "PMC3277767";
@@ -93,3 +88,4 @@ public class PubMedFetcherIntegrationTest {
 
 
 }
+*/
