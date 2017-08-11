@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models the 'tmAccessionTypeList' field from a EU PMC result.
+ */
 public class EupmcTmAccessionTypeArray {
   String[] accessionType;
 

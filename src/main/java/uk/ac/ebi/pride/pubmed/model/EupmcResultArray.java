@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models the 'resultList' from a EU PMC response.
+ */
 public class EupmcResultArray {
   EupmcResult[] result;
 

@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models a 'dbCrossReferenceList' use in a EU PMC result.
+ */
 public class EupmcDbCrossReferenceArray {
   String[] dbName;
 

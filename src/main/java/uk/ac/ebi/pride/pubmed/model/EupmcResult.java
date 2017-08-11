@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models a 'result' used in an array of EU PMC results.
+ */
 public class EupmcResult {
   String id;
   String source;

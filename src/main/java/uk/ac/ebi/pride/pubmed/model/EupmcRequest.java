@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models a 'request' used in a EU PMC response.
+ */
 public class EupmcRequest {
   String query;
   String resultType;

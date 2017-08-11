@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Models a response from the EU PMC.
+ */
 public class EupmcResponse {
   String version;
   int hitCount;

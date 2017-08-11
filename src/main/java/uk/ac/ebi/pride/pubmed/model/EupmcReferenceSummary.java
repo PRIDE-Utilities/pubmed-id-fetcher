@@ -1,5 +1,8 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+/**
+ * Holds a reference line ('refLine') summary, and a EU PMC reference result.
+ */
 public class EupmcReferenceSummary {
     private String refLine;
     private EupmcResult eupmcResult;
