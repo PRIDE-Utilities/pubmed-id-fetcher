@@ -28,7 +28,7 @@ public class PubMedFetcher {
    */
   public static EupmcReferenceSummary getPubMedSummary(String pubmedId) throws URISyntaxException, IOException {
     EupmcReferenceSummary result;
-    final String REQUEST_URL = "http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=ext_id:" + pubmedId + "%20src:med&format=json";
+    final String REQUEST_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=ext_id:" + pubmedId + "%20src:med&format=json";
     log.info("Requesting EUPMC WS using: " + REQUEST_URL);
     EupmcResponse response = performEupmcQuery(REQUEST_URL);
     if (response!=null) {
