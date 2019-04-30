@@ -32,6 +32,7 @@ public class EupmcResult {
   String hasLabsLinks;
   String hasTMAccessionNumbers;
   EupmcTmAccessionTypeArray tmAccessionTypeList;
+  String firstIndexDate;
   String firstPublicationDate;
 
   /**
@@ -554,5 +555,23 @@ public class EupmcResult {
    */
   public void setTmAccessionTypeList(EupmcTmAccessionTypeArray tmAccessionTypeList) {
     this.tmAccessionTypeList = tmAccessionTypeList;
+  }
+
+  /**
+   * Gets firstIndexDate.
+   *
+   * @return Value of firstIndexDate.
+   */
+  public String getFirstIndexDate() {
+    return firstIndexDate;
+  }
+
+  /**
+   * Sets new firstIndexDate.
+   *
+   * @param firstIndexDate New value of firstIndexDate.
+   */
+  public void setFirstIndexDate(String firstIndexDate) {
+    this.firstIndexDate = firstIndexDate;
   }
 }
