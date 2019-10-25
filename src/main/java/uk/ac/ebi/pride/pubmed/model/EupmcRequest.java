@@ -4,7 +4,7 @@ package uk.ac.ebi.pride.pubmed.model;
  * Models a 'request' used in a EU PMC response.
  */
 public class EupmcRequest {
-  String query;
+  String queryString;
   String resultType;
   boolean synonym;
   String cursorMark;
@@ -57,12 +57,12 @@ public class EupmcRequest {
   }
 
   /**
-   * Gets query.
+   * Gets queryString.
    *
-   * @return Value of query.
+   * @return Value of queryString.
    */
-  public String getQuery() {
-    return query;
+  public String getQueryString() {
+    return queryString;
   }
 
   /**
@@ -111,11 +111,11 @@ public class EupmcRequest {
   }
 
   /**
-   * Sets new query.
+   * Sets new queryString.
    *
-   * @param query New value of query.
+   * @param queryString New value of queryString.
    */
-  public void setQuery(String query) {
-    this.query = query;
+  public void setQueryString(String queryString) {
+    this.queryString = queryString;
   }
 }
