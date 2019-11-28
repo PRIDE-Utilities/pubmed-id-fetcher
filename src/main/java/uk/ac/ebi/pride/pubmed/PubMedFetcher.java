@@ -40,6 +40,21 @@ public class PubMedFetcher {
     return result;
   }
 
+
+  public static boolean isPreprintPublication(String doi) throws URISyntaxException, IOException {
+      EupmcReferenceSummary result;
+      final String REQUEST_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=doi:" + doi + "&format=json";
+      log.info("Requesting EUPMC WS using: " + REQUEST_URL);
+      EupmcResponse response = performEupmcQuery(REQUEST_URL);
+      if (response!=null) {
+          result = maptoSummaryObject(response);
+      } else {
+          throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
+      }
+
+      return result.getEupmcResult().getPubType().equals("preprint");
+  }
+
   /**
    * Performs the query to the EU PMC WS.
    * @param requestUrl the URL as a Struns, used for the  query.

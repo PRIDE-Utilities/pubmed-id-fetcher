@@ -1,26 +1,13 @@
 package uk.ac.ebi.pride.pubmed.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Models a 'dbCrossReferenceList' use in a EU PMC result.
  */
+@Getter
+@Setter
 public class EupmcDbCrossReferenceArray {
   String[] dbName;
-
-  /**
-   * Gets dbName.
-   *
-   * @return Value of dbName.
-   */
-  public String[] getDbName() {
-    return dbName;
-  }
-
-  /**
-   * Sets new dbName.
-   *
-   * @param dbName New value of dbName.
-   */
-  public void setDbName(String[] dbName) {
-    this.dbName = dbName;
-  }
 }
