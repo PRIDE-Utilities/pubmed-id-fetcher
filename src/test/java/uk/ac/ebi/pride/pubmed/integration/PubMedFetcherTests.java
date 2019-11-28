@@ -40,9 +40,14 @@ public class PubMedFetcherTests {
     log.info("Summary reference: " + summary.getRefLine());
   }
 
+    /**
+     * Check publications are pre-print or not
+     * @throws IOException
+     * @throws URISyntaxException
+     */
   @Test
   public void isPreprintPublication() throws IOException, URISyntaxException {
     Assert.isTrue(PubMedFetcher.isPreprintPublication("10.1101/846303"),"Not a Preprint");
-    Assert.isTrue(! PubMedFetcher.isPreprintPublication("10.1074/mcp.M111.013797"),"A Preprint"); // pubmed id: 22147733
+    Assert.isTrue(! PubMedFetcher.isPreprintPublication("10.1074/mcp.M111.013797"),"A Preprint");
   }
 }

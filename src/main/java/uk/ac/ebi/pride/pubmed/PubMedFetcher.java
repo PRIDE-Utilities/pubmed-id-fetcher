@@ -41,6 +41,14 @@ public class PubMedFetcher {
   }
 
 
+  /**
+   *  This method checks if the publication is pre-print or not.
+   *  If it is a pre-print, value in the PubType field in the response will be preprint
+   * @param doi DOI
+   * @return boolean results
+   * @throws URISyntaxException
+   * @throws IOException
+   */
   public static boolean isPreprintPublication(String doi) throws URISyntaxException, IOException {
       EupmcReferenceSummary result;
       final String REQUEST_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=doi:" + doi + "&format=json";
