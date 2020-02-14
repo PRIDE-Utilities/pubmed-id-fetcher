@@ -10,6 +10,7 @@ import lombok.Setter;
 @Setter
 public class EupmcRequest {
   private String queryString;
+  private String internalQuery;
   private String resultType;
   private boolean synonym;
   private String cursorMark;
