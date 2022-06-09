@@ -2,6 +2,7 @@ package uk.ac.ebi.pride.pubmed;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -17,9 +18,8 @@ import java.util.Objects;
  * This class helps to retrieve the information from Pubmed including id, title, etc.
  * @author ypriverol
  */
+@Slf4j
 public class ReferenceUtil {
-
-
 
     public static PubMedReference getPubmedReference(String pubmedId) throws Exception {
         final int rateLimit = 50;
@@ -85,8 +85,10 @@ public class ReferenceUtil {
             } catch (Exception e) {
                 k++;
                 Thread.sleep(k * 1000);
+                log.error(String.format("Error retrieving pubmedid %s attempt %s .", pubmedId, k).toString());
             }
         }
+        log.error("Error retrieving the pubmedId: " + pubmedId);
         throw new IllegalStateException("Error retrieving pubmed citation for " + pubmedId);
     }
 

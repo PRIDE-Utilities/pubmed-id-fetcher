@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.pubmed.integration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +15,8 @@ import java.net.URISyntaxException;
 /**
  * Tests obtaining references from the EU PMC WS.
  */
+@Slf4j
 public class PubMedFetcherTests {
-  private static Logger log = LoggerFactory.getLogger(PubMedFetcherTests.class);
 
   /**
    * Test to obtain references from the EU PMC WS.
@@ -27,6 +28,7 @@ public class PubMedFetcherTests {
     assertSummaryReference(PubMedFetcher.getPubMedSummary("22807455"));
     assertSummaryReference(PubMedFetcher.getPubMedSummary("22825847"));
     assertSummaryReference(PubMedFetcher.getPubMedSummary("24607996"));
+    assertSummaryReference(PubMedFetcher.getPubMedSummary("26793209"));
   }
 
   /**
