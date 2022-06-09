@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import uk.ac.ebi.pride.pubmed.PubMedFetcher;
-import uk.ac.ebi.pride.pubmed.model.EupmcReferenceSummary;
+import uk.ac.ebi.pride.pubmed.model.Reference;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -33,11 +33,13 @@ public class PubMedFetcherTests {
    * Checks the reference summary information are not null.
    * @param summary the summary reference to check
    */
-  private void assertSummaryReference(EupmcReferenceSummary summary) {
+  private void assertSummaryReference(Reference summary) throws Exception {
     Assert.isTrue(summary!=null, "Summary cannot be null!");
-    Assert.isTrue(!StringUtils.isEmpty(summary.getRefLine()), "Summary RefLine cannot be null or empty!");
-    Assert.isTrue(summary.getEupmcResult()!=null, "Summary Result cannot be null!");
-    log.info("Summary reference: " + summary.getRefLine());
+    Assert.isTrue(!StringUtils.isEmpty(summary.getReferenceLine()), "Summary RefLine cannot be null or empty!");
+    Assert.isTrue((PubMedFetcher.getPubMedSummaryFromPubmed("22147733") != null));
+    Assert.isTrue(summary !=null, "Summary Result cannot be null!");
+    log.info("Summary reference: " + summary.getReferenceLine());
+    log.info("Summary reference: " + PubMedFetcher.getPubMedSummaryFromPubmed("22147733").getReferenceLine());
   }
 
     /**

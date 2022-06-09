@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EupmcResult {
+public class EupmcResult{
   private String id;
   private String source;
   private String pmid;

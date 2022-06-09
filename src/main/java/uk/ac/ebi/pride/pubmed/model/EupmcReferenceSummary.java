@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EupmcReferenceSummary {
+public class EupmcReferenceSummary{
     private String refLine;
     private EupmcResult eupmcResult;
 }
