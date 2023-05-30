@@ -64,6 +64,19 @@ public class PubMedFetcher {
     return result;
   }
 
+  public static Reference getDoiSummary(String doi) throws URISyntaxException, IOException {
+    Reference result;
+    final String REQUEST_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=doi:" + doi + "&format=json";
+    log.info("Requesting EUPMC WS using: " + REQUEST_URL);
+    EupmcResponse response = performEupmcQuery(REQUEST_URL);
+    if (response!=null) {
+      result = getReference(response);
+    } else {
+      throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
+    }
+    return result;
+  }
+
   /**
    *  This method checks if the publication is pre-print or not.
    *  If it is a pre-print, value in the PubType field in the response will be preprint
