@@ -92,6 +92,7 @@ public class ReferenceUtil {
         throw new IllegalStateException("Error retrieving pubmed citation for " + pubmedId);
     }
 
+
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;

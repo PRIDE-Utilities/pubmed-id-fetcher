@@ -32,7 +32,7 @@ public class PubMedFetcher {
     log.info("Requesting EUPMC WS using: " + REQUEST_URL);
     EupmcResponse response = performEupmcQuery(REQUEST_URL);
     if (response != null) {
-      result = getReference(response);
+      result = getReference(response, true);
     } else {
       ReferenceUtil.PubMedReference pubmedReference = ReferenceUtil.getPubmedReference(pubmedId);
       if (pubmedReference != null){
@@ -42,6 +42,34 @@ public class PubMedFetcher {
       }
     }
     log.debug("Refline result: " + result.getReferenceLine());
+    return result;
+  }
+
+  /**
+   * Search Publication by Project accession. If more than two records found, get the oldest one
+   * @param projectAccession PRIDE PXD ID
+   * @return references
+   * @throws Exception
+   */
+  public static Reference getPubMedSummaryByProjectAccession(String projectAccession) throws Exception {
+    Reference result = null;
+    final String REQUEST_URL = "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=" + projectAccession + "%20src:med&format=json&sort=FIRST_PDATE_D%20asc";
+    log.info("Requesting EUPMC WS using: " + REQUEST_URL);
+    EupmcResponse response = performEupmcQuery(REQUEST_URL);
+    if (response != null) {
+      result = getReference(response, false);
+    }
+//    else {
+//      ReferenceUtil.PubMedReference pubmedReference = ReferenceUtil.getPubmedReference(pubmedId);
+//      if (pubmedReference != null){
+//        result = getReference(pubmedReference);
+//      }else{
+//        throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
+//      }
+//    }
+    if(result != null) {
+      log.debug("Refline result: " + result.getReferenceLine());
+    }
     return result;
   }
 
@@ -70,7 +98,7 @@ public class PubMedFetcher {
     log.info("Requesting EUPMC WS using: " + REQUEST_URL);
     EupmcResponse response = performEupmcQuery(REQUEST_URL);
     if (response!=null) {
-      result = getReference(response);
+      result = getReference(response, true);
     } else {
       throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
     }
@@ -89,7 +117,7 @@ public class PubMedFetcher {
       log.info("Requesting EUPMC WS using: " + REQUEST_URL);
       EupmcResponse response = performEupmcQuery(REQUEST_URL);
       if (response!=null) {
-          result = getReference(response);
+          result = getReference(response, true);
       } else {
           throw new IOException("No proper response from EU PMC for: " + REQUEST_URL);
       }
@@ -128,9 +156,9 @@ public class PubMedFetcher {
    * @return the reference summary
    * @throws IOException exactly 1 hit is expected, otherwise this is a problem due to either no, or multiple, hits were returned.
    */
-  private static Reference getReference(EupmcResponse response) throws IOException {
+  private static Reference getReference(EupmcResponse response, boolean allowOnlyOneHit) throws IOException {
     int hitCount = response.getHitCount();
-    if (hitCount!=1) {
+    if (hitCount !=1 && allowOnlyOneHit) {
       String message = "Error, expected 1 result back from EU PMC instead got: " + hitCount;
       log.error("Error, expected 1 result back from EU PMC instead got: " + hitCount);
       throw new IOException(message);
