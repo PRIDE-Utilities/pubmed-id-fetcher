@@ -54,4 +54,9 @@ public class PubMedFetcherTests {
     Assert.isTrue(PubMedFetcher.isPreprintPublication("10.1101/846303"),"Not a Preprint");
     Assert.isTrue(! PubMedFetcher.isPreprintPublication("10.1074/mcp.M111.013797"),"A Preprint");
   }
+
+  @Test
+  public void isPubMedSummaryByProjectAccession() throws Exception {
+    Assert.isTrue(PubMedFetcher.getPubMedSummaryByProjectAccession("PXD025705").getPmid().equals("35508466"));
+  }
 }
